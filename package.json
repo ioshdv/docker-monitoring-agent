@@ -1,0 +1,14 @@
+{
+  "name": "docker-monitoring-agent",
+  "version": "1.0.0",
+  "description": "Node app with Prometheus metrics and structured logging for a docker monitoring stack.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "prom-client": "^15.1.3",
+    "winston": "^3.13.0"
+  }
+}
