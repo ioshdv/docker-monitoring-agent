@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Aplicación principal
   app:
@@ -62,7 +60,7 @@ services:
     networks:
       - monitoring
 
-  # ELK Stack para logs
+  # Elasticsearch para logs
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
     environment:
@@ -76,6 +74,7 @@ services:
     networks:
       - monitoring
 
+  # Logstash
   logstash:
     image: docker.elastic.co/logstash/logstash:7.17.0
     ports:
@@ -87,14 +86,15 @@ services:
     networks:
       - monitoring
 
+  # Kibana
   kibana:
     image: docker.elastic.co/kibana/kibana:7.17.0
     ports:
       - "5601:5601"
-    depends_on:
-      - elasticsearch
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
     networks:
       - monitoring
 
